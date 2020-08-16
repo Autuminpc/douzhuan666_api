@@ -1,0 +1,127 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label for="c-username" class="control-label col-xs-12 col-sm-2">{:__('Username')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-username" data-rule="required" class="form-control" name="row[username]" type="text" value="{$row.username|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-nickname" class="control-label col-xs-12 col-sm-2">{:__('Nickname')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-nickname" data-rule="required" class="form-control" name="row[nickname]" type="text" value="{$row.nickname|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-mobile" class="control-label col-xs-12 col-sm-2">{:__('Mobile')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-mobile" data-rule="" class="form-control" name="row[mobile]" type="text" value="{$row.mobile|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-sex" class="control-label col-xs-12 col-sm-2">{:__('Sex')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            {:build_radios('row[sex]', ['1'=>__('Male'), '2'=>__('Female')], $row['sex'])}
+        </div>
+    </div>
+    <!-- 现住址 -->
+    <div data-toggle="cxselect" data-selects="address_province,address_city,address_area">
+        <div class="form-group" >
+            <label for="c-address_province" class="control-label col-xs-12 col-sm-2">{:__('Address_province')}:</label>
+            <div class="col-xs-12 col-sm-4">
+                    <select id="c-address_province" class="address_province form-control" name="row[address_province]" data-url="ajax/address_area" >
+                        <option value="{$row.address_province|htmlentities}" selected></option>
+                    </select>
+            </div>
+        </div>
+        <div class="form-group" >
+            <label for="c-address_city" class="control-label col-xs-12 col-sm-2">{:__('Address_city')}:</label>
+            <div class="col-xs-12 col-sm-4">
+                    <select id="c-address_city" class="address_city form-control" data-rule="" name="row[address_city]" data-url="ajax/address_area" data-query-name="address_province">
+                        <option value="{$row.address_city|htmlentities}" selected></option>
+                    </select>
+            </div>
+        </div>
+        <div class="form-group" >
+            <label for="c-address_area" class="control-label col-xs-12 col-sm-2">{:__('Address_area')}:</label>
+            <div class="col-xs-12 col-sm-4">
+                    <select id="c-address_area" class="address_area form-control" data-rule="" name="row[address_area]" data-url="ajax/address_area" data-query-name="address_city">
+                        <option value="{$row.address_area|htmlentities}" selected></option>
+                    </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Address_detail')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-address_detail" data-rule="" class="form-control" name="row[address_detail]" type="text" value="{$row.address_detail|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Bank_Name')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-bank_name" readonly data-rule="" class="form-control" name="row[bank_name]" type="text" value="{$row.bank_name|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Subbranch_Name')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-subbranch_name" readonly data-rule="" class="form-control" name="row[subbranch_name]" type="text" value="{$row.subbranch_name|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Bank_User')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-bank_user" readonly data-rule="" class="form-control" name="row[bank_user]" type="text" value="{$row.bank_user|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Bank_Number')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-bank_number" readonly data-rule="" class="form-control" name="row[bank_number]" type="text" value="{$row.bank_number|htmlentities}">
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="c-password" class="control-label col-xs-12 col-sm-2">{:__('Password')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-password" data-rule="password" class="form-control" name="row[password]" type="text" value="" placeholder="{:__('Leave password blank if dont want to change')}" autocomplete="new-password" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-prevtime" class="control-label col-xs-12 col-sm-2">{:__('Prevtime')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-prevtime" readonly data-rule="required" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[prevtime]" type="text" value="{$row.prevtime|datetime}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-loginip" class="control-label col-xs-12 col-sm-2">{:__('Loginip')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-loginip" readonly data-rule="required" class="form-control" name="row[loginip]" type="text" value="{$row.loginip}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-jointime" class="control-label col-xs-12 col-sm-2">{:__('Jointime')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-jointime" readonly data-rule="required" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[jointime]" type="text" value="{$row.jointime|datetime}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-joinip" class="control-label col-xs-12 col-sm-2">{:__('Joinip')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-joinip" readonly data-rule="required" class="form-control" name="row[joinip]" type="text" value="{$row.joinip}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="content" class="control-label col-xs-12 col-sm-2">{:__('Status')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            {:build_radios('row[status]', ['1'=>__('Normal'), '0'=>__('Hidden')], $row['status'])}
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

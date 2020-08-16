@@ -1,0 +1,23 @@
+<form id="rechage_meal-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <input type="hidden" name="row['id']" value="{$row.id|htmlentities}">
+    <div class="form-group">
+        <label for="c-username" class="control-label col-xs-12 col-sm-2">{:__('Username')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-username" data-rule="required" readonly class="form-control" name="row[username]" type="text" value="{$row.username|htmlentities}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="c-meal_id" class="control-label col-xs-12 col-sm-2">{:__('套餐')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input id="c-meal_id" data-order-by="id" data-rule="required" data-source="user/meal/index" class="form-control selectpage" name="meal_id" type="text" value="1">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <!-- <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button> -->
+        </div>
+    </div>
+</form>

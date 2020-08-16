@@ -1,0 +1,128 @@
+<style>
+    .profile-avatar-container {
+        position: relative;
+        width: 100px;
+        margin: 0 auto;
+    }
+
+    .profile-avatar-container .profile-user-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-avatar-container .profile-avatar-text {
+        display: none;
+    }
+
+    .profile-avatar-container:hover .profile-avatar-text {
+        display: block;
+        position: absolute;
+        height: 100px;
+        width: 100px;
+        background: #444;
+        opacity: .6;
+        color: #fff;
+        top: 0;
+        left: 0;
+        line-height: 100px;
+        text-align: center;
+    }
+
+    .profile-avatar-container button {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+    }
+</style>
+<div class="row animated fadeInRight">
+    <div class="col-md-5">
+        <div class="box box-success">
+            <div class="panel-heading">
+                {:__('基本资料')}
+            </div>
+            <div class="panel-body">
+                <form id="update-form" role="form" data-toggle="validator" method="POST" action="{:url('profile/update')}">
+                    {:token()}
+                    <input type="hidden" id="c-avatar" name="row[avatar]" value="{$store.avatar|htmlentities}"/>
+                    <div class="box-body box-profile">
+
+                        <div class="profile-avatar-container">
+                            <img class="profile-user-img img-responsive img-circle plupload" src="{$store.avatar|cdnurl|htmlentities}" alt="">
+                            <div class="profile-avatar-text img-circle">{:__('编辑店铺头像')}</div>
+                            <button id="plupload-avatar" class="plupload" data-input-id="c-avatar"><i class="fa fa-upload"></i> {:__('Upload')}</button>
+                        </div>
+
+                        <h3 class="profile-username text-center">{$organ.username|htmlentities}</h3>
+
+                        <p class="text-muted text-center">{$organ.nickname|htmlentities}</p>
+                        <div class="form-group">
+                            <label for="name" class="control-label">{:__('店铺名称')}:</label>
+                            <input type="text" data-rule="required" class="form-control" id="name" name="row[name]" value="{$store.name|htmlentities}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="store_brief" class="control-label">{:__('店铺简介')}:</label>
+                            <textarea id="store_brief" data-rule="required" class="form-control" rows="5" name="row[store_brief]" cols="50">{$store.store_brief|htmlentities}</textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">{:__('Submit')}</button>
+                            <button type="reset" class="btn btn-default">{:__('Reset')}</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-md-5">
+        <div class="box box-info">
+            <div class="panel-heading">
+                {:__('图片资料')}
+            </div>
+            <div class="panel-body">
+                <form id="update-img-form" role="form" data-toggle="validator" method="POST" action="{:url('profile/update')}">
+                    {:token()}
+                    <div class="box-body box-profile">
+                        <div class="form-group">
+                            <label class="control-label">{:__('店铺详情页背景图')}:</label>
+                            <div>
+                                <div class="input-group">
+                                    <input id="c-store_image" data-rule="required" class="form-control" size="50" name="row[store_image]" type="text" value="{$store.store_image|htmlentities}">
+                                    <div class="input-group-addon no-border no-padding">
+                                        <span><button type="button" id="plupload-store_image" class="btn btn-danger plupload" data-input-id="c-store_image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-store_image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                        <!-- <span><button type="button" id="fachoose-store_image" class="btn btn-primary fachoose" data-input-id="c-store_image" data-mimetype="image/*" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span> -->
+                                    </div>
+                                    <span class="msg-box n-right" for="c-store_image"></span>
+                                </div>
+                                <ul class="row list-inline plupload-preview" id="p-store_image"></ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">{:__('客服二维码')}:</label>
+                            <div>
+                                <div class="input-group">
+                                    <input id="c-service_image" data-rule="required" class="form-control" size="50" name="row[service_image]" type="text" value="{$store.service_image|htmlentities}">
+                                    <div class="input-group-addon no-border no-padding">
+                                        <span><button type="button" id="plupload-service_image" class="btn btn-danger plupload" data-input-id="c-service_image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-service_image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                        <!-- <span><button type="button" id="fachoose-service_image" class="btn btn-primary fachoose" data-input-id="c-service_image" data-mimetype="image/*" data-multiple="true"><i class="fa fa-list"></i> {:__('Choose')}</button></span> -->
+                                    </div>
+                                    <span class="msg-box n-right" for="c-service_image"></span>
+                                </div>
+                                <ul class="row list-inline plupload-preview" id="p-service_image"></ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">{:__('Submit')}</button>
+                            <button type="reset" class="btn btn-default">{:__('Reset')}</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

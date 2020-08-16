@@ -1,0 +1,187 @@
+<div class="panel panel-default panel-intro">
+        <div class="panel-heading">
+            {:build_heading(null, false)}
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#userinfo" data-toggle="tab">用户信息</a></li>
+                <li class=""><a href="#productinfo" data-toggle="tab">产品信息</a></li>
+                <li class=""><a href="#orderinfo" data-toggle="tab">订单信息</a></li>
+            </ul>
+        </div>
+        <div class="panel-body">
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="userinfo">
+                    <form action="" class="form-horizontal" role="form" data-toggle="validator" method="POST" > 
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('下单用户')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-user-username" disabled data-rule="required" class="form-control" name="row[user][username]" type="text" value="{$row.user.username|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('下单手机')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-user-mobile" disabled data-rule="required" class="form-control" name="row[user][mobile]" type="text" value="{$row.user.mobile|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('用户积分')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-user-score" disabled data-rule="required" class="form-control" name="row[user][score]" type="text" value="{$row.user.score|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('注册时间')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-user-create_time" disabled data-rule="required" class="form-control" name="row[user][create_time]" type="text" value="{:$row.user.create_time?datetime($row.user.create_time):''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('最近登陆')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                    <input id="c-user-prevtime" disabled data-rule="required" class="form-control" name="row[user][prevtime]" type="text" value="{:$row.user.prevtime?datetime($row.user.prevtime):''}">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="productinfo">
+                    <form action="" class="form-horizontal" role="form" data-toggle="validator" method="POST" >
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('Score_product_name')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-scoreproduct-name" disabled data-rule="required" class="form-control" name="row[scoreproduct][name]" type="text" value="{$row.scoreproduct.name|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('Score_product_cover')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="input-group">
+                                    <input id="c-scoreproduct-cover" style="display: none;"  data-rule="required" class="form-control" size="50" name="row[scoreproduct][cover]" type="text" value="{$row.scoreproduct.cover|htmlentities}">
+                                    <div class="input-group-addon no-border no-padding">
+                                        <span><button type="button" style="display: none;" id="plupload-scoreproduct-cover" class="btn btn-danger plupload" data-input-id="c-scoreproduct-cover" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-scoreproduct-cover"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                    </div>
+                                    <span class="msg-box n-right" for="c-scoreproduct-cover"></span>
+                                </div>
+                                <ul class="row list-inline plupload-preview" id="p-scoreproduct-cover"></ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('Score_product_cover')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="input-group">
+                                    <input id="c-scoreproduct-image" style="display: none;"  data-rule="required" class="form-control" size="50" name="row[scoreproduct][image]" type="text" value="{$row.scoreproduct.image|htmlentities}">
+                                    <div class="input-group-addon no-border no-padding">
+                                        <span><button type="button" style="display: none;" id="plupload-scoreproduct-image" class="btn btn-danger plupload" data-input-id="c-scoreproduct-image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="true" data-preview-id="p-scoreproduct-image"><i class="fa fa-upload"></i> {:__('Upload')}</button></span>
+                                    </div>
+                                    <span class="msg-box n-right" for="c-scoreproduct-image"></span>
+                                </div>
+                                <ul class="row list-inline plupload-preview" id="p-scoreproduct-image"></ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('所需积分')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-scoreproduct-price" disabled data-rule="required" class="form-control" name="row[scoreproduct][price]" type="text" value="{$row.scoreproduct.price|htmlentities}">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="orderinfo">
+                    <form action="" class="form-horizontal" role="form" data-toggle="validator" method="POST" >
+                        
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('Status')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-status_text" disabled data-rule="required" class="form-control" name="row[status_text]" type="text" value="{$row.status_text|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('下单时间')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                    <input id="c-create_time" disabled data-rule="required" class="form-control" name="row[create_time]" type="text" value="{:$row.create_time?datetime($row.create_time):''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('Sn')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-sn" disabled data-rule="required" class="form-control" name="row[sn]" type="text" value="{$row.sn|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('兑换数量')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-num" disabled data-rule="required" class="form-control" step="0.01" name="row[num]" type="text" value="{$row.num|htmlentities}">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('消费积分')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-total_price" disabled data-rule="required" class="form-control" step="0.01" name="row[total_price]" type="text" value="{$row.total_price|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('Consignee_name')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-consignee_name" disabled data-rule="required" class="form-control" name="row[consignee_name]" type="text" value="{$row.consignee_name|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('Consignee_mobile')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-consignee_mobile" disabled data-rule="required" class="form-control" name="row[consignee_mobile]" type="text" value="{$row.consignee_mobile|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('Consignee_address')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-consignee_address" disabled data-rule="required" class="form-control" name="row[consignee_address]" type="text" value="{$row.consignee_address|htmlentities}">
+                            </div>
+                        </div>
+                        
+                        {if condition="$row.status gt 1 and $row.status neq 4"}
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('快递公司')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-tracking_sn" disabled data-rule="required" class="form-control" name="row[expresscompany][name]" type="text" value="{$row.expresscompany.name|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('快递订单号')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-tracking_sn" disabled data-rule="required" class="form-control" name="row[tracking_sn]" type="text" value="{$row.tracking_sn|htmlentities}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('Delivery_time')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-delivery_time" disabled data-rule="required" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[delivery_time]" type="text" value="{:$row.delivery_time?datetime($row.delivery_time):''}">
+                            </div>
+                        </div>
+                        {/if}
+                        
+                        {if condition="$row.status eq 3"}
+                        <div class="form-group">
+                            <label class="control-label col-xs-12 col-sm-2">{:__('Complete_time')}:</label>
+                            <div class="col-xs-12 col-sm-8">
+                                <input id="c-complete_time" disabled data-rule="required" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[complete_time]" type="text" value="{:$row.complete_time?datetime($row.complete_time):''}">
+                            </div>
+                        </div>
+                        {/if}
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        
+        
+    
+        
+        
+        
+        
+        
+        
+        
+     

@@ -1,0 +1,22 @@
+<form id="deliver_good-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('快递公司')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-express_company_id" data-rule="required" data-source="express_company/index" class="form-control selectpage" name="express_company_id" type="text" >
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('快递订单号')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-tracking_sn" data-rule="required" class="form-control" name="tracking_sn" type="text" value="{$row.tracking_sn|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>
+    
